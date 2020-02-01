@@ -35,6 +35,16 @@
 			request.getRequestDispatcher("index.jsp").forward(request, response);
 		}
 	%>
+
+	<jsp:useBean id="producto" class="com.uniovi.sdi.Producto" />
+	<jsp:setProperty name="producto" property="*" />
+	<%
+		if (producto.getNombre() != null) {
+			new ProductosService().setNuevoProducto(producto);
+			request.getRequestDispatcher("index.jsp").forward(request, response);
+		}
+	%>
+
 	<!-- Contenido -->
 	<div class="container" id="contenedor-principal">
 		<h2>Agregar producto a la tienda</h2>
