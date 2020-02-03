@@ -4,6 +4,7 @@ public class Producto {
 	private String nombre;
 	private String imagen;
 	private float precio;
+	private int unit;
 	
 	public Producto() {
 		

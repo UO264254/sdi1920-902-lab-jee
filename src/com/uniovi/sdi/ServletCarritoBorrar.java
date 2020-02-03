@@ -14,14 +14,14 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet implementation class ServletCarrito
  */
-@WebServlet("/incluirEnCarrito")
-public class ServletCarrito extends HttpServlet {
+@WebServlet("/eliminarDeCarrito")
+public class ServletCarritoBorrar extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public ServletCarrito() {
+	public ServletCarritoBorrar() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -45,7 +45,7 @@ public class ServletCarrito extends HttpServlet {
 
 		String producto = request.getParameter("producto");
 		if (producto != null) {
-			insertarEnCarrito(carrito, producto);
+			borrarEnCarrito(carrito, producto);
 		}
 
 		// Retornar la vista con parámetro "carrito"
@@ -54,12 +54,16 @@ public class ServletCarrito extends HttpServlet {
 		response);
 	}
 
-	private void insertarEnCarrito(HashMap<String, Integer> carrito, String claveProducto) {
+	private void borrarEnCarrito(HashMap<String, Integer> carrito, String claveProducto) {
 		if (carrito.get(claveProducto) == null)
-			carrito.put(claveProducto, Integer.valueOf(1));
+			return;
 		else {
 			int numeroArticulos = (Integer) carrito.get(claveProducto).intValue();
-			carrito.put(claveProducto, Integer.valueOf(numeroArticulos + 1));
+			if (numeroArticulos>1) {
+				carrito.put(claveProducto, Integer.valueOf(numeroArticulos - 1));
+			} else {
+				carrito.remove(claveProducto);
+			}
 		}
 
 	}
