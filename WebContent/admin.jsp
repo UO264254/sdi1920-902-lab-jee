@@ -21,18 +21,8 @@
 	<c:if test="${sessionScope.usuario != 'admin'}">
 		<c:redirect url="/login.jsp" />
 	</c:if>
-	<%
-		if (request.getParameter("nombre") != null && request.getParameter("imagen") != null
-				&& request.getParameter("precio") != null) {
-			String nombre = (String) request.getParameter("nombre");
-			String imagen = (String) request.getParameter("imagen");
-			float precio = Float.parseFloat(request.getParameter("precio"));
-			Producto producto = new Producto(nombre, imagen, precio);
-			new ProductosService().setNuevoProducto(producto);
-			request.getRequestDispatcher("index.jsp").forward(request, response);
-		}
-	%>
-
+	 
+ 
 	<jsp:useBean id="producto" class="com.uniovi.sdi.Producto" />
 	<jsp:setProperty name="producto" property="*" />
 	

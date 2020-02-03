@@ -30,7 +30,7 @@ public class ServletCarrito extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)//procesar la información
 			throws ServletException, IOException {
 
 		HttpSession session = request.getSession();
